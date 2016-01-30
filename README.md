@@ -18,3 +18,15 @@ running scientific workflows and understanding results obtained (using provenanc
 [Phenome]: https://www.phenome-fppn.fr/phenome_eng/
 [SciFloware]: http://www-sop.inria.fr/members/Didier.Parigot/pmwiki/Scifloware/
 [OpenAlea]: http://openalea.gforge.inria.fr
+
+## Installation
+
+### OpenAlea installation
+- On Ubuntu : http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download:linux
+
+## Data
+
+## Workflow
+
+## Notebook
+
