@@ -108,8 +108,11 @@ def import_images(image_directory, genotype_name, plant_id):
     genotype image collection
     """
 
-    im_dir = os.path.join(image_directory, genotype_name, plant_id)
-    side_views = glob(im_dir + '*sv*.png')
+    pattern = plant_id + '_' + genotype_name + '*sv*.png'
+    dir = os.path.normpath(image_directory)
+    files_path = os.path.join(dir, pattern)
+    side_views = glob(files_path)
+
     dates = map(lambda s: os.path.basename(s).split(' ')[0].split('_')[-1],
                 side_views)
     images = {d: [] for d in set(dates)}

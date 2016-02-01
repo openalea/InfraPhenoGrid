@@ -1,5 +1,5 @@
 
-# This file has been generated at Fri Jul  3 09:55:35 2015
+# This file has been generated at Mon Feb 01 10:47:49 2016
 
 from openalea.core import *
 
@@ -17,174 +17,38 @@ __institutes__ = None
 __icon__ = ''
 
 
-__all__ = ['openalea.infraphenogrid.data_illumination_test_image_4', 'openalea.infraphenogrid.data_illumination_test_image_6', 'openalea.infraphenogrid.data_illumination_test_image_5', '_140149896171728', 'openalea.infraphenogrid.data_illumination_test_image_3', 'openalea.infraphenogrid.data_illumination_test_image_2', '_140149897622800', 'openalea.infraphenogrid.data_side_blob_test_2', 'openalea.infraphenogrid.data_side_blob_test_3', 'openalea.infraphenogrid.data_side_blob_test_1', 'openalea.infraphenogrid.data_top_blob_test', 'openalea.infraphenogrid.data_illumination_test_image_1', '_140149897690064']
+__all__ = ['_256148752', '_256148784', '_256148720', '_256148816', '_285429840']
 
 
-
-alinea_phenomenal_data_illumination_test_image_4 = Factory(name='illumination_test_image_4',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_4',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_illumination_test_image_6 = Factory(name='illumination_test_image_6',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_6',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_illumination_test_image_5 = Factory(name='illumination_test_image_5',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_5',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-_140149896171728 = DataFactory(name='top.png',
+_256148752 = DataFactory(name='top.png',
                     description='',
                     editors=None,
                     includes=None,
                     )
 
 
-
-alinea_phenomenal_data_illumination_test_image_3 = Factory(name='illumination_test_image_3',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_3',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_illumination_test_image_2 = Factory(name='illumination_test_image_2',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_2',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-_140149897622800 = DataFactory(name='side90.png',
+_256148784 = DataFactory(name='side0.png',
                     description='',
                     editors=None,
                     includes=None,
                     )
 
 
-
-alinea_phenomenal_data_side_blob_test_2 = Factory(name='side_blob_test_2',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='side_blob_test_2',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
+_256148720 = DataFactory(name='side90.png',
+                    description='',
+                    editors=None,
+                    includes=None,
+                    )
 
 
+_256148816 = DataFactory(name='side_blob_test_1.png',
+                    description='',
+                    editors=None,
+                    includes=None,
+                    )
 
 
-alinea_phenomenal_data_side_blob_test_3 = Factory(name='side_blob_test_3',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='side_blob_test_3',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_side_blob_test_1 = Factory(name='side_blob_test_1',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='side_blob_test_1',
-                inputs=[],
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_top_blob_test = Factory(name='top_blob_test',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='top_blob_test',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-
-alinea_phenomenal_data_illumination_test_image_1 = Factory(name='illumination_test_image_1',
-                authors=' (wralea authors)',
-                description='',
-                category='data',
-                nodemodule='openalea.infraphenogrid.data',
-                nodeclass='illumination_test_image_1',
-                inputs=None,
-                outputs=[{'interface': None, 'name': 'out_image'}],
-                widgetmodule=None,
-                widgetclass=None,
-               )
-
-
-
-_140149897690064 = DataFactory(name='side0.png',
+_285429840 = DataFactory(name='top_blob_test.png',
                     description='',
                     editors=None,
                     includes=None,
