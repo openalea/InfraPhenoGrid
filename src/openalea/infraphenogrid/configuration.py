@@ -20,8 +20,8 @@ from collections import OrderedDict
 
 
 from openalea.deploy.shared_data import shared_data
-import alinea.phenomenal
-import alinea.phenomenal.binarization_configuration as b_config
+import openalea.infraphenogrid
+import openalea.infraphenogrid.binarization_configuration as b_config
 # ==============================================================================
 
 
@@ -59,7 +59,7 @@ class PhenomenalConfigParser(ConfigParser, object):
 def loadconfig(config='SideCamera2013_ZoomOut.cfg'):
     """ load a configuration from shared data directory
     """
-    confdir = shared_data(alinea.phenomenal)
+    confdir = shared_data(openalea.infraphenogrid)
     p = PhenomenalConfigParser()
     p.read(confdir / config)
     d = p.as_dict()
@@ -125,7 +125,7 @@ def import_images(image_directory, genotype_name, plant_id):
 # backward compatibility functions
 def getconfig(configfile=None):
     if configfile is None:
-        configfile = shared_data(alinea.phenomenal) / 'config.cfg'
+        configfile = shared_data(openalea.infraphenogrid) / 'config.cfg'
 
     p = PhenomenalConfigParser()
     p.read(configfile)
@@ -133,7 +133,7 @@ def getconfig(configfile=None):
     if p.has_option('General', 'configdir'):
         confdir = p.get('General', 'configdir')
         if confdir == 'SharedData':
-            confdir = str(shared_data(alinea.phenomenal))
+            confdir = str(shared_data(openalea.infraphenogrid))
         for s in p._sections:
             for it in p.items(s, raw=True):
                 if it[0] == 'mask' or it[0] == 'background':
@@ -143,7 +143,7 @@ def getconfig(configfile=None):
     if p.has_option('General', 'config_images_dir'):
         confdir = p.get('General', 'config_images_dir')
         if confdir == 'SharedData':
-            confdir = str(shared_data(alinea.phenomenal))
+            confdir = str(shared_data(openalea.infraphenogrid))
         s = 'config_images'
         for it in p.items(s, raw=True):
             p.set(s, it[0], os.path.join(confdir, os.path.basename(it[1])))
@@ -203,7 +203,7 @@ def read_config(config_file):
     d = p.as_dict()
 
     if d['General']['configdir'] == 'SharedData':
-        shared_directory = shared_data(alinea.phenomenal)
+        shared_directory = shared_data(openalea.infraphenogrid)
     else:
         shared_directory = d['General']['configdir']
 

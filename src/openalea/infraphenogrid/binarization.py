@@ -14,8 +14,9 @@ import cv2
 
 
 import openalea.opencv.extension as ocv2
-import alinea.phenomenal.binarization_processing as b_processing
-import alinea.phenomenal.binarization_algorithm as b_algorithm
+import openalea.infraphenogrid.binarization_processing as b_processing
+import openalea.infraphenogrid.binarization_algorithm as b_algorithm
+
 # ==============================================================================
 
 
