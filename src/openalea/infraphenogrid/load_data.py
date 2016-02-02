@@ -9,23 +9,18 @@
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 # ==============================================================================
-
-__revision__ = ""
-
 import cv2
 
-
 from openalea.deploy.shared_data import shared_data
-import alinea.phenomenal
+import openalea.infraphenogrid
 # ==============================================================================
 
 
 def side_blob_test_1():
-    shared_directory = shared_data(alinea.phenomenal)
+    shared_directory = shared_data(openalea.infraphenogrid)
     return cv2.imread(shared_directory + '/images/' + 'side_blob_test_1.png')
 
 
 def top_blob_test():
-    shared_directory = shared_data(alinea.phenomenal)
+    shared_directory = shared_data(openalea.infraphenogrid)
     return cv2.imread(shared_directory + '/images/' + 'top_blob_test.png')
-
