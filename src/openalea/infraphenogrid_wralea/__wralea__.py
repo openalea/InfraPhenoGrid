@@ -2,7 +2,7 @@
 
 from openalea.core import *
 
-__name__ = 'OpenAlea.InfraPhenoGrid'
+__name__ = 'openalea.infraphenogrid'
 
 __editable__ = True
 __description__ = ''
