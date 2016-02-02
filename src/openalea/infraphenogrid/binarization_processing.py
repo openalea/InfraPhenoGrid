@@ -9,16 +9,18 @@
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 # ==============================================================================
-
-__revision__ = ""
-
+"""
+Post processing algorithms to improve binarization of a image
+"""
+# ==============================================================================
 import cv2
-import openalea.opencv.extension as ocv2
+import numpy
 
+import openalea.opencv.extension as ocv2
 # ==============================================================================
 
 
-def clean_noise(image, mask=None):
+def clean_noise(binary_image, mask=None):
     """
     Goal: Cleaning orange band noise with mask
 
@@ -26,26 +28,48 @@ def clean_noise(image, mask=None):
     Applied subtract image and mask and add to image modify before
     And finally, erode and dilate again
 
-    :param image: Binary Image
-    :param mask:
-    :return: Binary image
+    Parameters
+    ----------
+    binary_image : numpy.ndarray
+        2-D array
+
+    mask : numpy.ndarray, optional
+        Array of same shape as `image`. Only points at which mask == True
+        will be processed.
+
+    Returns
+    -------
+    out : numpy.ndarray
+        Binary Image
     """
+    # ==========================================================================
+    # Check Parameters
+    if not isinstance(binary_image, numpy.ndarray):
+        raise TypeError('binary_image must be a numpy.ndarray')
+
+    if binary_image.ndim != 2:
+        raise ValueError('binary_image must be 2D array')
+
     if mask is not None:
-        image_modify = cv2.bitwise_and(image, mask)
+        if not isinstance(mask, numpy.ndarray):
+            raise TypeError('mask must be a numpy.ndarray')
+        if mask.ndim != 2:
+            raise ValueError('mask must be 2D array')
+    # ==========================================================================
+    if mask is not None:
+        out = cv2.bitwise_and(binary_image, mask)
     else:
-        image_modify = image
+        out = binary_image.copy()
 
-    image_modify = ocv2.erode(image_modify, iterations=3)
-    image_modify = ocv2.dilate(image_modify, iterations=3)
+    element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
+    out = cv2.erode(out, element, iterations=3)
+    out = cv2.dilate(out, element, iterations=3)
 
     if mask is not None:
-        res = cv2.subtract(image, mask)
-    else:
-        res = image
+        res = cv2.subtract(binary_image, mask)
+        out = cv2.add(res, out)
 
-    res = cv2.add(res, image_modify)
+    out = ocv2.erode(out)
+    out = ocv2.dilate(out)
 
-    res = ocv2.erode(res)
-    res = ocv2.dilate(res)
-
-    return res
+    return out
