@@ -24,6 +24,27 @@ running scientific workflows and understanding results obtained (using provenanc
 ### OpenAlea installation
 - [Ubuntu installation](http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download:linux)
 
+### Detailed instruction
+- pyqt
+- pywin32
+- ipython
+- ipython-console
+
+- deploy
+- core
+- graph_editor
+- vpltk (change default QT_API_VERSION to 2 instead of 1 in qt/__init__.py)
+- misc
+- oalab
+- visualea
+
+- numpy
+- scipy
+- matplotlib
+- opencv
+
+- openalea-opencv
+
 ## Data
 
 <img src="./src/openalea/infraphenogrid/share/data/images/side_blob_test_1.png" width="30%"/>
