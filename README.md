@@ -18,33 +18,18 @@ running scientific workflows and understanding results obtained (using provenanc
 [Phenome]: https://www.phenome-fppn.fr/phenome_eng/
 [SciFloware]: http://www-sop.inria.fr/members/Didier.Parigot/pmwiki/Scifloware/
 [OpenAlea]: http://openalea.gforge.inria.fr
+[openCV]: https://github.com/openalea/openalea-opencv.git
 
 ## Installation
 
 ### OpenAlea installation
 - [Ubuntu installation](http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download:linux)
 
-### Detailed instructions
-- pyqt
-- pywin32
-- ipython
-- ipython-console
-
-- deploy
-- core
-- graph_editor
-- vpltk (change default QT_API_VERSION to 2 instead of 1 in qt/__init__.py)
-- misc
-- oalab
-- visualea
-
-- numpy
-- scipy
-- matplotlib
-- opencv
-
-- openalea-opencv
-- infraphenogrid
+Then, both openalea.opencv and infraphenogrid need to be installed.
+- Fetch the sources on github:
+  - [OpenCV]
+  - [InfraPhenoGrid]
+- python setup.py install from the root dir of each package.
 
 ## Data
 
@@ -69,7 +54,7 @@ In 'openalea/infraphenogrid/demo' two directories contain:
 - some example of algorithms to evaluate the leaf area of binarized images
 - some examples of algorithms to binarize pictures taken on the [PhenoArch] platform.
 
-Two more workflow compare the result of each category of algorithms.
+Two more workflows compare the result of each category of algorithms.
 
 ### Usage
 
