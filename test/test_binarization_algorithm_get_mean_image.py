@@ -11,7 +11,7 @@
 # ==============================================================================
 import numpy
 
-from alinea.phenomenal.binarization_algorithm import get_mean_image
+from openalea.infraphenogrid.binarization_algorithm import get_mean_image
 # ==============================================================================
 
 
