@@ -84,7 +84,7 @@ Phenomenal_algorithm_side_binarization_elcom = Factory(
     authors='Elcom',
     description='',
     category='Binarization',
-    nodemodule='alinea.phenomenal.binarization',
+    nodemodule='openalea.infraphenogrid.binarization',
     nodeclass='side_binarization_elcom',
 
     inputs=[{'interface': None,
@@ -104,7 +104,7 @@ Phenomenal_algorithm_side_binarization_adaptive_thresh = Factory(
     authors='Simon',
     description='',
     category='Binarization',
-    nodemodule='alinea.phenomenal.binarization',
+    nodemodule='openalea.infraphenogrid.binarization',
     nodeclass='side_binarization_adaptive_thresh',
 
     inputs=[{'interface': None,
