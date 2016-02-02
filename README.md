@@ -24,7 +24,7 @@ running scientific workflows and understanding results obtained (using provenanc
 ### OpenAlea installation
 - [Ubuntu installation](http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download:linux)
 
-### Detailed instruction
+### Detailed instructions
 - pyqt
 - pywin32
 - ipython
@@ -44,6 +44,7 @@ running scientific workflows and understanding results obtained (using provenanc
 - opencv
 
 - openalea-opencv
+- infraphenogrid
 
 ## Data
 
@@ -61,6 +62,21 @@ select dir where images where extracted.
 run workflow
 
 ## Workflow
+
+### Description
+
+In 'openalea/infraphenogrid/demo' two directories contain:
+- some example of algorithms to evaluate the leaf area of binarized images
+- some examples of algorithms to binarize pictures taken on the [PhenoArch] platform.
+
+Two more workflow compare the result of each category of algorithms.
+
+### Usage
+
+- Open a workflow in 'visualea' (double click in the package explorer view)
+- if the workflow contains a 'import_images' node you need to open it (double click on the node)
+to point it to the directory where the data set has been unpacked.
+- Run the workflow to display the results (Ctrl + R or right click on a specific node to run)
 
 ## Notebook
 
