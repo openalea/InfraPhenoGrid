@@ -58,7 +58,7 @@ Two more workflows compare the result of each category of algorithms.
 to point it to the directory where the data set has been unpacked.
 - Run the workflow to display the results (Ctrl + R or right click on a specific node to run)
 
-<img src="./share/data/images/compare_binarization.svg" width="50%"/>
+<img src="./share/data/images/binarization_result.png" width="80%"/>
 
 ## Notebook
 
