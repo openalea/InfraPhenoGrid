@@ -47,8 +47,8 @@ running scientific workflows and understanding results obtained (using provenanc
 
 ## Data
 
-<img src="./src/openalea/infraphenogrid/share/data/images/side_blob_test_1.png" width="30%"/>
-<img src="./src/openalea/infraphenogrid/share/data/images/top_blob_test.png" width="43%"/>
+<img src="./share/data/images/side_blob_test_1.png" width="30%"/>
+<img src="./share/data/images/top_blob_test.png" width="43%"/>
 
 ## Workflow
 
