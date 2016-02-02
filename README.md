@@ -50,6 +50,16 @@ running scientific workflows and understanding results obtained (using provenanc
 <img src="./src/openalea/infraphenogrid/share/data/images/side_blob_test_1.png" width="30%"/>
 <img src="./src/openalea/infraphenogrid/share/data/images/top_blob_test.png" width="43%"/>
 
+Fetch data set:
+https://gforge.inria.fr/frs/download.php/file/35148/data_set_0962_A310_ARCH2013-05-13.zip
+
+Extract in any directory
+Launch visualea
+Open "openalea/infraphenogrid/demo/area_estimation/demo_area_estimation_meanshift"
+Open 'import' node
+select dir where images where extracted.
+run workflow
+
 ## Workflow
 
 ## Notebook
