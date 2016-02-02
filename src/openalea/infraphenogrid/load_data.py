@@ -9,11 +9,7 @@
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 # ==============================================================================
-
-__revision__ = ""
-
 import cv2
-
 
 from openalea.deploy.shared_data import shared_data
 import openalea.infraphenogrid

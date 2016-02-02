@@ -1,5 +1,5 @@
 
-# This file has been generated at Mon Feb 01 10:47:49 2016
+# This file has been generated at Tue Feb 02 12:08:47 2016
 
 from openalea.core import *
 
@@ -17,38 +17,10 @@ __institutes__ = None
 __icon__ = ''
 
 
-__all__ = ['_256148752', '_256148784', '_256148720', '_256148816', '_285429840']
+__all__ = ['_240459472']
 
 
-_256148752 = DataFactory(name='top.png',
-                    description='',
-                    editors=None,
-                    includes=None,
-                    )
-
-
-_256148784 = DataFactory(name='side0.png',
-                    description='',
-                    editors=None,
-                    includes=None,
-                    )
-
-
-_256148720 = DataFactory(name='side90.png',
-                    description='',
-                    editors=None,
-                    includes=None,
-                    )
-
-
-_256148816 = DataFactory(name='side_blob_test_1.png',
-                    description='',
-                    editors=None,
-                    includes=None,
-                    )
-
-
-_285429840 = DataFactory(name='top_blob_test.png',
+_240459472 = DataFactory(name='side_blob_test_1.png',
                     description='',
                     editors=None,
                     includes=None,

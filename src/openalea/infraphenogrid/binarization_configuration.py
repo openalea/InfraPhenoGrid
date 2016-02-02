@@ -11,21 +11,11 @@
 # ==============================================================================
 
 
-__revision__ = ""
-
-# ==============================================================================
-
-
 class RegionOfInterest:
     def __init__(self):
         self.hsv_min = None
         self.hsv_max = None
         self.mask = None
-
-    def print_value(self):
-        print 'hsv_min ', self.hsv_min
-        print 'hsv_max ', self.hsv_max
-        print 'mask is None :', self.mask is None
 
 
 class MeanShiftBinarizationFactor(object):
@@ -33,12 +23,8 @@ class MeanShiftBinarizationFactor(object):
         self._threshold = 0.3
         self._dark_background = False
 
-    def print_value(self):
-        print 'threshold ', self._threshold
-        print 'dark_background ', self._dark_background
-
-    #   =======================================================================
-    #   threshold
+    # ==========================================================================
+    # threshold
     @property
     def threshold(self):
         return self._threshold
@@ -48,8 +34,8 @@ class MeanShiftBinarizationFactor(object):
         if isinstance(value, type(self._threshold)):
             self._threshold = value
 
-    #   =======================================================================
-    #   dark_background
+    # ==========================================================================
+    # dark_background
     @property
     def dark_background(self):
         return self._dark_background
@@ -74,13 +60,3 @@ class BinarizationConfig:
 
         self.cubicle_domain = None
         self.background = None
-
-    def print_value(self):
-        self.meanshift_binarization_factor.print_value()
-        self.roi_main.print_value()
-        self.roi_stem.print_value()
-        self.roi_pot.print_value()
-        self.roi_panel.print_value()
-        self.roi_orange_band.print_value()
-        print 'Cubicle domain : ', self.cubicle_domain
-        print 'Background is None : ', self.background is None

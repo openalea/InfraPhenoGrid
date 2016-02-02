@@ -108,7 +108,7 @@ def mean_shift_binarization(image,
 
 def hsv_binarization(image, hsv_min, hsv_max, mask=None):
     """
-    Binarize HSV image with hsv_min and hsv_max parameters.
+    Binarize RGB image with hsv_min and hsv_max parameters.
     => cv2.inRange(hsv_image, hsv_min, hsv_max)
 
     If mask is not None :
@@ -179,93 +179,46 @@ def hsv_binarization(image, hsv_min, hsv_max, mask=None):
     return out
 
 
-def mixed_binarization(image,
-                       mean_image,
-                       hsv_min,
-                       hsv_max,
-                       threshold=0.3,
-                       dark_background=False,
-                       mask_meanshift=None,
-                       mask_hsv=None):
+def get_mean_image(images):
     """
+    Compute the mean of a image list.
 
-    :param image:
-    :param mean_image:
-    :param hsv_min:
-    :param hsv_max:
-    :param threshold:
-    :param dark_background:
-    :param mask_meanshift:
-    :param mask_hsv:
-    :return:
+    Parameters
+    ----------
+    images : [ numpy.ndarray of integers ]
+        list of 3-D array
+
+    Returns
+    -------
+    out : numpy.ndarray
+         Mean of the list image
+
+    See Also
+    --------
+    threshold_meanshift
     """
+    # ==========================================================================
+    # Check Parameters
+    if not isinstance(images, list):
+        raise TypeError('images is not a list')
+    if not images:
+        raise ValueError('images is empty')
 
-    binary_hsv_image = hsv_binarization(image, hsv_min, hsv_max, mask_hsv)
+    shape_image_ref = None
+    for image in images:
+        if not isinstance(image, numpy.ndarray):
+            raise TypeError('image in list images is not a ndarray')
 
-    binary_meanshift_image = mean_shift_binarization(image,
-                                                     mean_image,
-                                                     threshold,
-                                                     dark_background,
-                                                     mask_meanshift)
+        if shape_image_ref is None:
+            shape_image_ref = numpy.shape(image)
+        elif numpy.shape(image) != shape_image_ref:
+            raise ValueError('Shape of ndarray image in list is different')
+    # ==========================================================================
 
-    result = cv2.add(binary_hsv_image, binary_meanshift_image * 255)
+    length = len(images)
+    weight = 1. / length
 
-    return result
+    start = cv2.addWeighted(images[0], weight, images[1], weight, 0)
+    function = lambda x, y: cv2.addWeighted(x, 1, y, weight, 0)
 
-
-def adaptive_thresh_gaussian_c(image,
-                               block_size,
-                               c,
-                               mask=None):
-    """
-
-    :param image:
-    :param block_size:
-    :param c:
-    :param mask:
-    :return:
-    """
-    if mask is not None:
-        image = cv2.bitwise_and(image, image, mask=mask)
-
-    result = cv2.adaptiveThreshold(
-        image,
-        255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY_INV,
-        block_size,
-        c)
-
-    if mask is not None:
-        result = cv2.bitwise_and(result, result, mask=mask)
-
-    return result
-
-
-def adaptive_thresh_mean_c(image,
-                           block_size,
-                           c,
-                           mask=None):
-    """
-
-    :param image:
-    :param block_size:
-    :param c:
-    :param mask:
-    :return:
-    """
-    if mask is not None:
-        image = cv2.bitwise_and(image, image, mask=mask)
-
-    result = cv2.adaptiveThreshold(
-        image,
-        255,
-        cv2.ADAPTIVE_THRESH_MEAN_C,
-        cv2.THRESH_BINARY_INV,
-        block_size,
-        c)
-
-    if mask is not None:
-        result = cv2.bitwise_and(result, result, mask=mask)
-
-    return result
+    return reduce(function, images[2:], start)

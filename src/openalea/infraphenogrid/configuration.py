@@ -9,9 +9,6 @@
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 # ==============================================================================
-
-__revision__ = ""
-
 import os
 import cv2
 from glob import glob
