@@ -18,6 +18,7 @@ import alinea.phenomenal.binarization_processing as b_processing
 import alinea.phenomenal.binarization_algorithm as b_algorithm
 # ==============================================================================
 
+
 def side_binarization_hsv(image, configuration):
     """
     Binarization of side image for Lemnatech  cabin based on hsv segmentation.

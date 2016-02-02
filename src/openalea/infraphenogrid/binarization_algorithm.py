@@ -9,81 +9,174 @@
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 # ==============================================================================
-
-__revision__ = ""
-
+"""
+Algorithms to threshold image
+"""
+# ==============================================================================
 import numpy
 import cv2
 # ==============================================================================
 
+
 def mean_shift_binarization(image,
-                            mean_image,
+                            mean,
                             threshold=0.3,
-                            dark_background=False,
+                            reverse=False,
                             mask=None):
     """
-    Threshold pixels in image such as :
-        image / mean_image <= (1 - threshhold).
+    Threshold pixels in numpy array such as::
 
-    If dark_background is True (Inequality is reversed) :
-        image / mean_image <= (1 + threshhold)
+        image / mean <= (1.0 - threshold)
 
-    :param image: Image of shape NxN
-    :param mean_image: Image of shape NxN
-    :param threshold: Float value
-    :param dark_background: Boolean
-    :param mask: Binary image
-    :return: Binary Image
+    If reverse is True (Inequality is reversed)::
+
+        image / mean <= (1.0 + threshold
+
+    Parameters
+    ----------
+    image : numpy.ndarray of integers
+        3-D array
+
+    mean : numpy.ndarray of the same shape as 'image'
+        3-D array 'mean'
+
+    threshold : float, optional
+        Threshold value. Must between 0.0 and 1.0
+
+    reverse : bool, optional
+       If True reverse inequality
+
+    mask : numpy.ndarray, optional
+        Array of same shape as `image`. Only points at which mask == True
+        will be thresholded.
+
+    Returns
+    -------
+    out : numpy.ndarray
+        Thresholded binary image
+
+    See Also
+    --------
+    get_mean_image, hsv_binarization
     """
+    # ==========================================================================
+    # Check Parameters
+    if not isinstance(image, numpy.ndarray):
+        raise TypeError('image should be a numpy.ndarray')
+    if not isinstance(mean, numpy.ndarray):
+        raise TypeError('mean should be a numpy.ndarray')
+    if not isinstance(threshold, float):
+        raise TypeError('threshold should be a float')
+    if not isinstance(reverse, bool):
+        raise TypeError('reverse should be a bool')
 
-    image_f32 = numpy.float32(image)
-    mean_image_f32 = numpy.float32(mean_image)
-
-    with numpy.errstate(divide='ignore'):
-        d = image_f32 / mean_image_f32
-
-    if dark_background:
-        if len(d.shape) > 2:  # color image
-            d = d.max(2)
-        dd = d >= (1. + threshold)
-    else:
-        if len(d.shape) > 2:  # color image
-            d = d.min(2)
-        dd = d <= (1. - threshold)
-
-    dd = numpy.uint8(dd)
+    if image.ndim != 3:
+        raise ValueError('image should be 3D array')
+    if mean.ndim != 3:
+        raise ValueError('mean should be 3D array')
+    if image.shape != mean.shape:
+        raise ValueError('image and mean must have equal sizes')
+    if not (0.0 <= threshold <= 1.0):
+        raise ValueError('threshold must be between 0.0 and 1.0')
 
     if mask is not None:
-        dd = cv2.bitwise_and(dd, mask)
+        if not isinstance(mask, numpy.ndarray):
+            raise TypeError('mask should be a numpy.ndarray')
+        if mask.ndim != 2:
+            raise ValueError('image should be 2D array')
+        if image.shape[0:2] != mask.shape:
+            raise ValueError('mask and image must have equal sizes')
+    # ==========================================================================
 
-    return dd
+    with numpy.errstate(divide='ignore'):
+        img = numpy.divide(numpy.float32(image), numpy.float32(mean))
+
+    if reverse:
+        img = img.max(2)
+        out = img >= (1. + threshold)
+    else:
+        img = img.min(2)
+        out = img <= (1. - threshold)
+
+    out = numpy.uint8(out)
+
+    if mask is not None:
+        out = cv2.bitwise_and(out, mask)
+
+    return out
 
 
-def hsv_binarization(image,
-                     hsv_min,
-                     hsv_max,
-                     mask=None):
+def hsv_binarization(image, hsv_min, hsv_max, mask=None):
     """
-    Binarize image with hsv_min and hsv_max parameters.
+    Binarize HSV image with hsv_min and hsv_max parameters.
     => cv2.inRange(hsv_image, hsv_min, hsv_max)
 
     If mask is not None :
     => cv2.bitwise_and(binary_hsv_image, mask)
 
-    :param image: BGR image
-    :param hsv_min:
-    :param hsv_max:
-    :param mask: Binary image
-    :return: Binary image
-    """
-    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    Parameters
+    ----------
+    image : numpy.ndarray of integers
+        3-D array of image HSV
 
-    binary_hsv_image = cv2.inRange(hsv_image, hsv_min, hsv_max)
+    hsv_min : tuple of integers
+        HSV value of minimum range
+
+    hsv_max : tuple of integers
+        HSV value of maximum range
+
+    mask : numpy.ndarray, optional
+        Array of same shape as `image`. Only points at which mask == True
+        will be thresholded.
+
+    Returns
+    -------
+    out : numpy.ndarray
+        Thresholded binary image
+
+    See Also
+    --------
+    mean_shift_binarization
+    """
+    # ==========================================================================
+    # Check Parameters
+    if not isinstance(image, numpy.ndarray):
+        raise TypeError('image should be a numpy.ndarray')
+    if image.ndim != 3:
+        raise ValueError('image should be 3D array')
+
+    if not isinstance(hsv_min, tuple):
+        raise TypeError('hsv_min should be a Tuple')
+    if len(hsv_min) != 3:
+        raise ValueError('hsv_min should be of size 3')
+    for value in hsv_min:
+        if not isinstance(value, int):
+            raise ValueError('hsv_min value should be a integer')
+
+    if not isinstance(hsv_max, tuple):
+        raise TypeError('hsv_max should be a Tuple')
+    if len(hsv_max) != 3:
+        raise ValueError('hsv_max should be of size 3')
+    for value in hsv_max:
+        if not isinstance(value, int):
+            raise ValueError('hsv_max value should be a integer')
 
     if mask is not None:
-        binary_hsv_image = cv2.bitwise_and(binary_hsv_image, mask)
+        if not isinstance(mask, numpy.ndarray):
+            raise TypeError('mask should be a numpy.ndarray')
+        if mask.ndim != 2:
+            raise ValueError('mask should be 2D array')
+        if image.shape[0:2] != mask.shape:
+            raise ValueError('image and mask should have the same shape')
+    # ==========================================================================
+    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-    return binary_hsv_image
+    out = cv2.inRange(hsv_image, hsv_min, hsv_max)
+
+    if mask is not None:
+        out = cv2.bitwise_and(out, mask)
+
+    return out
 
 
 def mixed_binarization(image,
