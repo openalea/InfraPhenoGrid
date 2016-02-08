@@ -37,7 +37,7 @@ Then, both openalea.opencv and infraphenogrid need to be installed.
 <img src="./share/data/images/top_blob_test.png" width="43%"/>
 
 Fetch data set:
-https://gforge.inria.fr/frs/download.php/file/35148/data_set_0962_A310_ARCH2013-05-13.zip
+https://gforge.inria.fr/frs/download.php/latestfile/5099/data_set_0962_A310_ARCH2013-05-13.zip
 
 Extract in any directory
 
